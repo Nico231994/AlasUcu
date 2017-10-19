@@ -28,9 +28,12 @@ public class TCamino {
 
     public String imprimirEtiquetas() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Aerolinea : "+this.aerolinea+" ----> "+"Origen: " + getOrigen().getEtiqueta());
+        Aeropuerto a = (Aeropuerto) this.origen.getDatos();
+        sb.append("Aerolinea : "+this.aerolinea+" ----> "+"Origen: " + a.getNombre()+" ("+ getOrigen().getEtiqueta()+") ");
         for (Comparable adyacente : getOtrosVertices()) {
             sb.append(" -> " + adyacente);
+            
+            sb.append(adyacente);
         }
         return sb.toString();
     }

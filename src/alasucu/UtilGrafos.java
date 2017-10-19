@@ -7,6 +7,8 @@ package alasucu;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -178,7 +180,26 @@ public class UtilGrafos {
         }
         return texto;
     }
+    public static Map<String,String>  cargarAerolinea(String archivo){
+        boolean ignoreHeader;
+        ignoreHeader = true;
+        //LinkedList<Aerolinea> aerolineas ;
+        Map<String,String> hasAerolineas = new HashMap<>();
 
+        String[] aerolineasa = ManejadorArchivosGenerico.leerArchivo(archivo, ignoreHeader);
+        for (int i = 0; i < aerolineasa.length; i++) {
+            String aerolineasa2 = aerolineasa[i];
+            String[] datos = aerolineasa2.split(",");
+            
+            String keyA = datos[0];
+            String nombreA  = datos[1];
+             if (!datos[0].isEmpty()){
+            hasAerolineas.put(keyA, nombreA);
+            System.out.println(keyA + "  " + nombreA);
+             }
+        }
+        return hasAerolineas;
+    }
     public static <T extends IGrafoDirigido> T cargarGrafo(String nomArchVert, String nomArchAdy,
             boolean ignoreHeader, Class t) throws ParseException {
 

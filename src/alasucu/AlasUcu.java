@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  *
@@ -28,8 +29,13 @@ public class AlasUcu {
                 "src/alasucu/aeropuertos_1.csv",
                 "src/alasucu/vuelos_test.csv",
                 false, TGrafoDirigido.class);
+          
         
-           String partida = "JFK";
+        
+        Map<String,String> hasAerolineas =  UtilGrafos.cargarAerolinea("src/alasucu/Aerolineas.csv");
+        System.out.println(hasAerolineas.get("AA"));
+        
+        String partida = "JFK";
         String destino = "LAX";
           //String partida = "LAX";
         //String destino = "BOI";
