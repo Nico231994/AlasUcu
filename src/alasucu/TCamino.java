@@ -32,8 +32,7 @@ public class TCamino {
         sb.append("Aerolinea : "+this.aerolinea+" ----> "+"Origen: " + a.getNombre()+" ("+ getOrigen().getEtiqueta()+") ");
         for (Comparable adyacente : getOtrosVertices()) {
             sb.append(" -> " + adyacente);
-            
-            sb.append(adyacente);
+    
         }
         return sb.toString();
     }
