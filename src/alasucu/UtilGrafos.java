@@ -18,7 +18,6 @@ import java.util.Set;
  * @author NicoPlaceres
  */
 public class UtilGrafos {
-    
 
     public static Double[][] obtenerMatrizCostos(Map<Comparable, TVertice> vertices) {
         int cantidadVertices = vertices.size();
@@ -180,26 +179,26 @@ public class UtilGrafos {
         }
         return texto;
     }
-    public static Map<String,String>  cargarAerolinea(String archivo){
+
+    public static Map<String, String> cargarAerolinea(String archivo) {
         boolean ignoreHeader;
         ignoreHeader = true;
-        //LinkedList<Aerolinea> aerolineas ;
-        Map<String,String> hasAerolineas = new HashMap<>();
+        Map<String, String> hasAerolineas = new HashMap<>();
 
         String[] aerolineasa = ManejadorArchivosGenerico.leerArchivo(archivo, ignoreHeader);
         for (int i = 0; i < aerolineasa.length; i++) {
             String aerolineasa2 = aerolineasa[i];
             String[] datos = aerolineasa2.split(",");
-            
+
             String keyA = datos[0];
-            String nombreA  = datos[1];
-             if (!datos[0].isEmpty()){
-            hasAerolineas.put(keyA, nombreA);
-            System.out.println(keyA + "  " + nombreA);
-             }
+            String nombreA = datos[1];
+            if (!datos[0].isEmpty()) {
+                hasAerolineas.put(keyA, nombreA);
+            }
         }
         return hasAerolineas;
     }
+
     public static <T extends IGrafoDirigido> T cargarGrafo(String nomArchVert, String nomArchAdy,
             boolean ignoreHeader, Class t) throws ParseException {
 
@@ -228,13 +227,9 @@ public class UtilGrafos {
                 aristasList.add(new TArista(datos[1], datos[2], Double.parseDouble(datos[3]), datos[0]));
             }
         }
-        
+
         IGrafoDirigido g = new TGrafoDirigido(verticesList, aristasList);
         return (T) g;
     }
-    
 
 }
-
-    
-

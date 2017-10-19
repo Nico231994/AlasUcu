@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
@@ -51,18 +52,19 @@ public class AlasUcu {
             TCaminos caminos = gnd.todosLosCaminos(partida, destino, aerolinea, cantEscalas);
             for (TCamino camino : caminos.getCaminos()) {
                 caminoTotalTest.add(camino.copiar());
-                System.out.println(camino.imprimirEtiquetas()+" " + camino.getAerolinea() + " " + camino.getCostoTotal());
+                //System.out.println(camino.imprimirEtiquetas()+" " + camino.getAerolinea() + " " + camino.getCostoTotal());
             }
 
             
         }
-        System.out.println(caminoTotalTest.element().imprimirEtiquetas() + " Costo total: " + caminoTotalTest.element().getCostoTotal());
-        TCamino puntero = caminoTotalTest.getFirst();
-        for (int i = 0; i <caminoTotalTest.size() ; i++) {
-                 System.out.println(puntero.imprimirEtiquetas() + " Costo total: " + puntero.getCostoTotal());
-                 
-           puntero =caminoTotalTest.getLast();
-        }
+        
+       // System.out.println(caminoTotalTest.element().imprimirEtiquetas() + " Costo total: " + caminoTotalTest.element().getCostoTotal());
+        
+         for (Iterator i = caminoTotalTest.iterator(); i.hasNext();) {
+             TCamino camino = (TCamino) i.next();
+            System.out.println(camino.imprimirEtiquetas() + " Costo total: " + camino.getCostoTotal());
+         }
+    
            
         /* TCaminos caminos = gnd.todosLosCaminos(partida, destino, "WN", cantEscalas);
         caminos.imprimirCaminosConsola();
