@@ -105,7 +105,7 @@ public class AlasUcu {
         //long minTiempo = Long.MAX_VALUE;
         TCamino caminoMasBarato = null;
         TCamino caminoMasRapido = null;
-         LinkedList<TCamino> caminoTotal = null;
+         LinkedList<TCamino> caminoTotal = new LinkedList<>();
         for (TCamino camino : caminos.getCaminos()) {
             if (camino.getCostoTotal() < minCosto) {
                 minCosto = camino.getCostoTotal();
@@ -116,8 +116,9 @@ public class AlasUcu {
  
         }
           for (TCamino camino : caminos2.getCaminos()) {
-              caminoTotal.add(new TCamino(camino.getOrigen(),camino.getAerolinea()));
-                
+            //caminoTotal.add(new TCamino(camino.getOrigen(),camino.getAerolinea()));
+            caminoTotal.add(camino.copiar());
+         
         }
           caminoTotal.element().imprimirEtiquetasConsola();
         try {
