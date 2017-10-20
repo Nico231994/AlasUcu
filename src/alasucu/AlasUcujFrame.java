@@ -58,8 +58,6 @@ public class AlasUcujFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jLabel4 = new javax.swing.JLabel();
@@ -107,12 +105,6 @@ public class AlasUcujFrame extends javax.swing.JFrame {
         jLabel2.setText("DESTINO");
 
         jLabel3.setText("ESCALAS");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextArea1.setEnabled(false);
-        jScrollPane2.setViewportView(jTextArea1);
 
         jTextPane1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextPane1.setEnabled(false);
@@ -168,10 +160,10 @@ public class AlasUcujFrame extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(jScrollPane3)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane5)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -192,15 +184,13 @@ public class AlasUcujFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
+                .addGap(5, 5, 5)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,27 +213,29 @@ public class AlasUcujFrame extends javax.swing.JFrame {
             
         LinkedList<TCamino> caminoTotalTest = UtilGrafos.unirCaminosAerolineas(hasAerolineas, grafo, partida, destino, maxEsclas);
         
-       String stringMostrar="";
-       DefaultTableModel dtm= new DefaultTableModel();
-       Object[][] data= new Object[3][100];
+     
        
-
+       Object[][] data= new Object[100][3];
+       
+       int j = 0;
          for (Iterator i = caminoTotalTest.iterator(); i.hasNext();) {
-             TCamino camino = (TCamino) i.next();
+            TCamino camino = (TCamino) i.next();
             System.out.println(camino.imprimirEtiquetas() + " Costo total: " + camino.getCostoTotal()+"\n");
-            stringMostrar+= camino.imprimirEtiquetas() + " Costo total: " + camino.getCostoTotal()+"\n";
             String[] arr;
             arr = new String[3];
             arr[0] = camino.getAerolinea();
             arr[1] = camino.imprimirEtiquetas();
             arr[2] = camino.getCostoTotal().toString();
+
+            
+             for (int k = 0; k < 3; k++) {
+                data[j][k]=arr[k];
+             }
            
-            Object[] rows= {camino.getAerolinea(),camino.imprimirEtiquetas(),camino.getCostoTotal().toString()};
-            dtm.addRow(rows);
+            j++;
             
             
          }
-         jTextArea1.setText(stringMostrar);
          
         jTable2.setModel(new javax.swing.table.DefaultTableModel(data, new String [] {"Aerolinea", "Ruta", "Costo"}));
   
@@ -329,13 +321,11 @@ public class AlasUcujFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JComboBox<String> jPartida;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextescalas;
     // End of variables declaration//GEN-END:variables
