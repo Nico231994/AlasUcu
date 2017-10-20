@@ -41,24 +41,11 @@ public class AlasUcu {
 
         int cantEscalas = 2;
 
-        LinkedList<TCamino> caminoTotalTest = new LinkedList<>();
-        Set<String> aerolineasKey = hasAerolineas.keySet();
-        Object[] arr = aerolineasKey.toArray();
+       
         
-
+        LinkedList<TCamino> caminoTotalTest = UtilGrafos.unirCaminosAerolineas(hasAerolineas, gnd, partida, destino, cantEscalas);
         
-        for (int i = 0; i < arr.length; i++) {
-            String aerolinea = arr[i].toString();
-            TCaminos caminos = gnd.todosLosCaminos(partida, destino, aerolinea, cantEscalas);
-            for (TCamino camino : caminos.getCaminos()) {
-                caminoTotalTest.add(camino.copiar());
-                //System.out.println(camino.imprimirEtiquetas()+" " + camino.getAerolinea() + " " + camino.getCostoTotal());
-            }
-
-            
-        }
-        
-       // System.out.println(caminoTotalTest.element().imprimirEtiquetas() + " Costo total: " + caminoTotalTest.element().getCostoTotal());
+       
         
          for (Iterator i = caminoTotalTest.iterator(); i.hasNext();) {
              TCamino camino = (TCamino) i.next();

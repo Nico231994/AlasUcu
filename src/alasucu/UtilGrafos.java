@@ -231,5 +231,22 @@ public class UtilGrafos {
         IGrafoDirigido g = new TGrafoDirigido(verticesList, aristasList);
         return (T) g;
     }
+    public static   LinkedList<TCamino> unirCaminosAerolineas(Map<String, String> hasAerolineas,TGrafoDirigido gnd,String partida,String destino, int cantEscalas){
+        LinkedList<TCamino> caminoTotalTest = new LinkedList<>();
+        Set<String> aerolineasKey = hasAerolineas.keySet();
+        Object[] arr = aerolineasKey.toArray();
+ 
+        for (int i = 0; i < arr.length; i++) {
+            String aerolinea = arr[i].toString();
+            
+            TCaminos caminos = gnd.todosLosCaminos(partida, destino, aerolinea, cantEscalas);
+            for (TCamino camino : caminos.getCaminos()) {
+                camino.setAerolinea(hasAerolineas.get(aerolinea));
+                caminoTotalTest.add(camino.copiar());
+            }
+        }
+        return caminoTotalTest;
+        
+    }
 
 }
